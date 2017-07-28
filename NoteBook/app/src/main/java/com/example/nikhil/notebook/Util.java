@@ -18,7 +18,7 @@ public class Util {
             "_ID integer primary key autoincrement," +
             "NAME text," +
             "DESCRIPTION text," +
-            "EMAIL text," +
+            "EMAIL text" +
             ")";
     public static final Uri USER_URI = Uri.parse("content://com.nikhil.cpdemo.userAuthority/"+TAB_NAME);
 
