@@ -24,7 +24,10 @@
             android:name=".UserContentProvider"
             android:authorities="com.nikhil.cpdemo.userAuthority"
             android:enabled="true"
-            android:exported="true"></provider>
+            android:exported="true" />
+
+        <activity android:name=".PracticeActivity" />
+        <activity android:name=".AllUserActivity"></activity>
     </application>
 
 </manifest>

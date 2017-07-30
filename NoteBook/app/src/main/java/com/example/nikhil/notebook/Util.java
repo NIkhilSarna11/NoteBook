@@ -17,8 +17,7 @@ public class Util {
     public static final String CREATE_TAB_QUERY = "create table Users(" +
             "_ID integer primary key autoincrement," +
             "NAME text," +
-            "DESCRIPTION text," +
-            "EMAIL text," +
+            "DESCRIPTION text" +
             ")";
     public static final Uri USER_URI = Uri.parse("content://com.nikhil.cpdemo.userAuthority/"+TAB_NAME);
 
