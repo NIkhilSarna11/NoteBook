@@ -21,14 +21,14 @@ ListView listView ;
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_all_user);
         initViews();
-        retrievUser();
         resolver = getContentResolver();
+        retrievUser();
+
     }
     void retrievUser()
     {
         String[] projection = { Util.COL_ID , Util.COL_NAME , Util.COL_DESCRIPTION
         };
-        resolver.query(Util.USER_URI , projection , null,null,null);
         Cursor cursor  = resolver.query(Util.USER_URI , projection , null,null,null);
         if(cursor!=null)
         {
