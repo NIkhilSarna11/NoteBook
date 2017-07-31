@@ -24,10 +24,7 @@ ListView listView ;
         initViews();
         resolver = getContentResolver();
         retrievUser();
-<<<<<<< HEAD
-=======
 
->>>>>>> d8389f0b5ab1ba91f73dafb3294de0e194c09bfd
     }
     void retrievUser()
     {
