@@ -24,12 +24,15 @@ ListView listView ;
         initViews();
         resolver = getContentResolver();
         retrievUser();
+<<<<<<< HEAD
+=======
+
+>>>>>>> d8389f0b5ab1ba91f73dafb3294de0e194c09bfd
     }
     void retrievUser()
     {
         String[] projection = { Util.COL_ID , Util.COL_NAME , Util.COL_DESCRIPTION
         };
-        resolver.query(Util.USER_URI , projection , null,null,null);
         Cursor cursor  = resolver.query(Util.USER_URI , projection , null,null,null);
         if(cursor!=null)
         {
