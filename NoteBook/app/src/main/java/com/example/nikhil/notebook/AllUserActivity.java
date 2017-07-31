@@ -15,14 +15,15 @@ ListView listView ;
     UserAdapter adapter ;
     void initViews()
     {
+
         listView = (ListView)findViewById(R.id.activityListView);
     }
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_all_user);
         initViews();
-        retrievUser();
         resolver = getContentResolver();
+        retrievUser();
     }
     void retrievUser()
     {
