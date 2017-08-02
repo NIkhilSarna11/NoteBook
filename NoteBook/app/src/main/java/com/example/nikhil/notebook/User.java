@@ -1,10 +1,12 @@
 package com.example.nikhil.notebook;
 
+import java.io.Serializable;
+
 /**
  * Created by nikhil on 27/7/17.
  */
 
-public class User {
+public class User implements Serializable{
     int id ;
     String Name , Description ;
 
@@ -40,5 +42,13 @@ public class User {
 
     public void setDescription(String description) {
         Description = description;
+    }
+
+    @Override
+    public String toString() {
+        return "User Details: " +
+                "\n\nID : " + id +
+                "\n\nName : " + Name +
+                "\n\nDescription : " +Description  ;
     }
 }

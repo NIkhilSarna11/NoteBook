@@ -20,7 +20,7 @@ public class Util {
             "DESCRIPTION text" +
             ")";
     public static final Uri USER_URI = Uri.parse("content://com.nikhil.cpdemo.userAuthority/"+TAB_NAME);
-
+    public static final String KEY_USER = "keyUser";
 
 
 }
