@@ -54,7 +54,7 @@ ListView listView ;
             }
             adapter = new UserAdapter(this,R.layout.list_item,userList);
             listView.setAdapter(adapter);
-
+            listView.setOnItemClickListener(this);
         }
     }
     void showUser(){
