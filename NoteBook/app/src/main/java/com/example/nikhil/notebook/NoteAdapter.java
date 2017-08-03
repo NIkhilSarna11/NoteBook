@@ -23,6 +23,7 @@ public class NoteAdapter extends ArrayAdapter<Note>{
 
     TextView txtName;
     TextView txtDescription;
+    TextView txtCurrentDate;
 
     public NoteAdapter(Context context, int resource, ArrayList<Note> objects) {
         super(context, resource, objects);
@@ -44,10 +45,12 @@ public class NoteAdapter extends ArrayAdapter<Note>{
 
         txtName = (TextView)view.findViewById(R.id.textViewName);
         txtDescription = (TextView)view.findViewById(R.id.textViewdescription);
+        txtCurrentDate = (TextView)view.findViewById(R.id.textViewDate);
 
         Note note = noteList.get(position);
         txtName.setText(note.getId()+" - "+ note.getName());
         txtDescription.setText(note.getDescription());
+        txtCurrentDate.setText(note.getCurrentDate());
 
         return view;
     }

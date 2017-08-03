@@ -7,17 +7,28 @@ import java.io.Serializable;
  */
 
 public class Note implements Serializable{
-    int id ;
-    String Name , Description ;
+    int id;
+    String Name;
+    String Description;
+    String CurrentDate;
 
-    public Note(int id, String name, String description) {
+    public Note(int id, String name, String description, String currentDate) {
         this.id = id;
         Name = name;
         Description = description;
+        CurrentDate = currentDate;
     }
 
     public Note() {
 
+    }
+
+    public String getCurrentDate() {
+        return CurrentDate;
+    }
+
+    public void setCurrentDate(String currentDate) {
+        CurrentDate = currentDate;
     }
 
     public int getId() {
@@ -49,6 +60,7 @@ public class Note implements Serializable{
         return "Note Details: " +
                 "\n\nID : " + id +
                 "\n\nName : " + Name +
-                "\n\nDescription : " +Description  ;
+                "\n\nDescription : " +Description +
+                "\n\nCreated : " + CurrentDate ;
     }
 }

@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.net.Uri;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -13,6 +14,9 @@ import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
+
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 public class NoteDetailsActivity extends AppCompatActivity  implements View.OnClickListener, AdapterView.OnItemClickListener{
 
@@ -22,6 +26,7 @@ public class NoteDetailsActivity extends AppCompatActivity  implements View.OnCl
     Note note, rcvNote;
     ContentResolver resolver ;
     boolean updateMode;
+    SimpleDateFormat dateFormat;
 
     void initviews()
     {
@@ -38,18 +43,28 @@ public class NoteDetailsActivity extends AppCompatActivity  implements View.OnCl
         resolver = getContentResolver();
     }
 
+    String FindCurrentDate(){
+        dateFormat = new SimpleDateFormat("dd/MM/yyyy");
+        String currentdate = dateFormat.format(new Date());
+        Log.i("test", currentdate);
+
+        return currentdate;
+    }
+
     @Override
     public void onClick(View view) {
         int id = view.getId();
         if(id == R.id.buttonSubmit)
-        note.setName(etxtName.getText().toString().trim());
-        note.setDescription(etxtDescription.getText().toString().trim());
-        insertUser();
+            note.setCurrentDate(FindCurrentDate());
+            note.setName(etxtName.getText().toString().trim());
+            note.setDescription(etxtDescription.getText().toString().trim());
+            insertUser();
     }
     void insertUser() {
         ContentValues values = new ContentValues();
         values.put(Util.COL_NAME, note.getName());
         values.put(Util.COL_DESCRIPTION, note.getDescription());
+        values.put(Util.COL_CURRENT_DATE, note.getCurrentDate());
 
         if(!updateMode) {
             Uri uri = resolver.insert(Util.USER_URI, values);

@@ -36,20 +36,21 @@ ListView listView ;
     }
     void retrievUser()
     {
-        String[] projection = { Util.COL_ID , Util.COL_NAME , Util.COL_DESCRIPTION
+        String[] projection = { Util.COL_ID , Util.COL_NAME , Util.COL_DESCRIPTION, Util.COL_CURRENT_DATE
         };
         Cursor cursor  = resolver.query(Util.USER_URI , projection , null,null,null);
         if(cursor!=null)
         {
             noteList = new ArrayList<Note>();
             int id = 0 ;
-            String n="" , d = "" ;
+            String n="" , d = "" , date="";
             while(cursor.moveToNext())
             {
                 id = cursor.getInt(cursor.getColumnIndex(Util.COL_ID));
                 n = cursor.getString(cursor.getColumnIndex(Util.COL_NAME));
                 d = cursor.getString(cursor.getColumnIndex(Util.COL_DESCRIPTION));
-                noteList.add(new Note(id,n,d));
+                date = cursor.getString(cursor.getColumnIndex(Util.COL_CURRENT_DATE));
+                noteList.add(new Note(id,n,d,date));
 
             }
             adapter = new NoteAdapter(this,R.layout.list_item, noteList);

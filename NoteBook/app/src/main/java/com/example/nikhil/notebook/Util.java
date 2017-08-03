@@ -14,10 +14,12 @@ public class Util {
     public static final String COL_ID = "_ID";
     public static final String COL_NAME = "NAME";
     public static final String COL_DESCRIPTION = "DESCRIPTION";
+    public static final String COL_CURRENT_DATE = "CURRENTDATE";
     public static final String CREATE_TAB_QUERY = "create table Users(" +
             "_ID integer primary key autoincrement," +
             "NAME text," +
-            "DESCRIPTION text" +
+            "DESCRIPTION text," +
+            "CURRENTDATE text" +
             ")";
     public static final Uri USER_URI = Uri.parse("content://com.nikhil.cpdemo.userAuthority/"+TAB_NAME);
     public static final String KEY_USER = "keyUser";
