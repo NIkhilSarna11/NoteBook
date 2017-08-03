@@ -20,6 +20,10 @@ public class NoteAdapter extends ArrayAdapter<Note>{
     int resource;
 
     ArrayList<Note> noteList,tempList;
+
+    TextView txtName;
+    TextView txtDescription;
+
     public NoteAdapter(Context context, int resource, ArrayList<Note> objects) {
         super(context, resource, objects);
         this.context = context ;
@@ -38,12 +42,12 @@ public class NoteAdapter extends ArrayAdapter<Note>{
 
         view = LayoutInflater.from(context).inflate(resource,parent,false);
 
-        TextView txtName = (TextView)view.findViewById(R.id.textViewName);
-        ;
+        txtName = (TextView)view.findViewById(R.id.textViewName);
+        txtDescription = (TextView)view.findViewById(R.id.textViewdescription);
 
         Note note = noteList.get(position);
         txtName.setText(note.getId()+" - "+ note.getName());
-
+        txtDescription.setText(note.getDescription());
 
         return view;
     }

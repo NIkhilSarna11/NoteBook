@@ -5,13 +5,20 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+
     <TextView
-        android:text="TextView"
-        android:layout_marginTop="6dp"
-        android:textSize="24dp"
+        android:id="@+id/textViewName"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/textViewName" />
+        android:layout_marginTop="6dp"
+        android:text="Name"
+        android:textSize="24dp" />
+
+    <TextView
+        android:id="@+id/textViewdescription"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Description" />
 
 
 </LinearLayout>
