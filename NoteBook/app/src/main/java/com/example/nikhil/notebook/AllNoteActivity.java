@@ -14,12 +14,12 @@ import android.widget.Toast;
 
 import java.util.ArrayList;
 
-public class AllUserActivity extends AppCompatActivity implements AdapterView.OnItemClickListener {
+public class AllNoteActivity extends AppCompatActivity implements AdapterView.OnItemClickListener {
 ListView listView ;
     ContentResolver resolver ;
-    ArrayList<User> userList ;
-    UserAdapter adapter ;
-    User user;
+    ArrayList<Note> noteList;
+    NoteAdapter adapter ;
+    Note note;
     int pos;
     void initViews()
     {
@@ -28,7 +28,7 @@ ListView listView ;
     }
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_all_user);
+        setContentView(R.layout.activity_all_note);
         initViews();
         resolver = getContentResolver();
         retrievUser();
@@ -41,7 +41,7 @@ ListView listView ;
         Cursor cursor  = resolver.query(Util.USER_URI , projection , null,null,null);
         if(cursor!=null)
         {
-            userList = new ArrayList<User>();
+            noteList = new ArrayList<Note>();
             int id = 0 ;
             String n="" , d = "" ;
             while(cursor.moveToNext())
@@ -49,24 +49,24 @@ ListView listView ;
                 id = cursor.getInt(cursor.getColumnIndex(Util.COL_ID));
                 n = cursor.getString(cursor.getColumnIndex(Util.COL_NAME));
                 d = cursor.getString(cursor.getColumnIndex(Util.COL_DESCRIPTION));
-                userList.add(new User(id,n,d));
+                noteList.add(new Note(id,n,d));
 
             }
-            adapter = new UserAdapter(this,R.layout.list_item,userList);
+            adapter = new NoteAdapter(this,R.layout.list_item, noteList);
             listView.setAdapter(adapter);
             listView.setOnItemClickListener(this);
         }
     }
     void showUser(){
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setTitle(user.getName());
-        builder.setMessage(user.toString());
+        builder.setTitle(note.getName());
+        builder.setMessage(note.toString());
         builder.setPositiveButton("Done",null);
         builder.create().show();
     }
     void askForDeletion(){
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setTitle("Delete: "+user.getName());
+        builder.setTitle("Delete: "+ note.getName());
         builder.setMessage("Are you Sure ?");
         builder.setPositiveButton("Delete", new DialogInterface.OnClickListener() {
             @Override
@@ -80,23 +80,23 @@ ListView listView ;
 
     void deleteUser(){
 
-        String where = Util.COL_ID+" = "+user.getId();
-        //String where = Util.COL_ID+" = '"+user.getName()+"'";
+        String where = Util.COL_ID+" = "+ note.getId();
+        //String where = Util.COL_ID+" = '"+note.getName()+"'";
 
         int i = resolver.delete(Util.USER_URI,where,null);
 
         if(i>0){
-            userList.remove(pos);
+            noteList.remove(pos);
             adapter.notifyDataSetChanged();
-            Toast.makeText(this,user.getName()+" deleted... ", Toast.LENGTH_LONG).show();
+            Toast.makeText(this, note.getName()+" deleted... ", Toast.LENGTH_LONG).show();
         }else{
-            Toast.makeText(this,user.getName()+" not deleted... ", Toast.LENGTH_LONG).show();
+            Toast.makeText(this, note.getName()+" not deleted... ", Toast.LENGTH_LONG).show();
         }
 
     }
     void showOptions(){
 
-        String[] items = {"View User","Delete User","Update User"};
+        String[] items = {"View Note","Delete Note","Update Note"};
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setItems(items, new DialogInterface.OnClickListener() {
             @Override
@@ -112,8 +112,8 @@ ListView listView ;
                         break;
 
                     case 2:
-                        Intent intent = new Intent(AllUserActivity.this,NoteDetailsActivity.class);
-                        intent.putExtra(Util.KEY_USER,user);
+                        Intent intent = new Intent(AllNoteActivity.this,NoteDetailsActivity.class);
+                        intent.putExtra(Util.KEY_USER, note);
                         startActivity(intent);
                         break;
                 }
@@ -127,7 +127,7 @@ ListView listView ;
     @Override
     public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
         pos = i;
-        user = userList.get(i);
+        note = noteList.get(i);
         showOptions();
     }
 }

@@ -21,13 +21,12 @@
         <activity android:name=".NoteDetailsActivity" />
 
         <provider
-            android:name=".UserContentProvider"
+            android:name=".NoteContentProvider"
             android:authorities="com.nikhil.cpdemo.userAuthority"
             android:enabled="true"
             android:exported="true" />
 
-        <activity android:name=".PracticeActivity" />
-        <activity android:name=".AllUserActivity"></activity>
+        <activity android:name=".AllNoteActivity"></activity>
     </application>
 
 </manifest>

@@ -8,7 +8,7 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.net.Uri;
 
-public class UserContentProvider extends ContentProvider {
+public class NoteContentProvider extends ContentProvider {
 
     DBHelper  dbHelper ;
     SQLiteDatabase sqLiteDatabase;

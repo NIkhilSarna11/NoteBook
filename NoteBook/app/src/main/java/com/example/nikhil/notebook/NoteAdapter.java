@@ -9,25 +9,24 @@ import android.widget.ArrayAdapter;
 import android.widget.TextView;
 
 import java.util.ArrayList;
-import java.util.List;
 
 /**
  * Created by nikhil on 29/7/17.
  */
 
-public class UserAdapter extends ArrayAdapter<User>{
+public class NoteAdapter extends ArrayAdapter<Note>{
 
     Context context;
     int resource;
 
-    ArrayList<User> userList,tempList;
-    public UserAdapter(Context context, int resource, ArrayList<User> objects) {
+    ArrayList<Note> noteList,tempList;
+    public NoteAdapter(Context context, int resource, ArrayList<Note> objects) {
         super(context, resource, objects);
         this.context = context ;
         this.resource = resource;
-        userList = objects ;
+        noteList = objects ;
         tempList = new ArrayList<>();
-        tempList.addAll(userList);
+        tempList.addAll(noteList);
 
 
     }
@@ -42,22 +41,22 @@ public class UserAdapter extends ArrayAdapter<User>{
         TextView txtName = (TextView)view.findViewById(R.id.textViewName);
         ;
 
-        User user = userList.get(position);
-        txtName.setText(user.getId()+" - "+user.getName());
+        Note note = noteList.get(position);
+        txtName.setText(note.getId()+" - "+ note.getName());
 
 
         return view;
     }
     public void filter(String str){
 
-        userList.clear();
+        noteList.clear();
 
         if(str.length()==0){
-            userList.addAll(tempList);
+            noteList.addAll(tempList);
         }else{
             for(int i=0;i<tempList.size();i++){
                 if(tempList.get(i).getName().toLowerCase().contains(str.toLowerCase())){
-                    userList.add(tempList.get(i));
+                    noteList.add(tempList.get(i));
                 }
             }
         }

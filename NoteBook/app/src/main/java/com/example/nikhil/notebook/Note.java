@@ -6,17 +6,17 @@ import java.io.Serializable;
  * Created by nikhil on 27/7/17.
  */
 
-public class User implements Serializable{
+public class Note implements Serializable{
     int id ;
     String Name , Description ;
 
-    public User(int id, String name, String description) {
+    public Note(int id, String name, String description) {
         this.id = id;
         Name = name;
         Description = description;
     }
 
-    public User() {
+    public Note() {
 
     }
 
@@ -46,7 +46,7 @@ public class User implements Serializable{
 
     @Override
     public String toString() {
-        return "User Details: " +
+        return "Note Details: " +
                 "\n\nID : " + id +
                 "\n\nName : " + Name +
                 "\n\nDescription : " +Description  ;

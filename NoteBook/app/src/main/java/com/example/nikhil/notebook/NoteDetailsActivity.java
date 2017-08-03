@@ -19,7 +19,7 @@ public class NoteDetailsActivity extends AppCompatActivity  implements View.OnCl
     EditText etxtName;
     EditText etxtDescription;
     Button btnSubmit ;
-    User user , rcvUser ;
+    Note note, rcvNote;
     ContentResolver resolver ;
     boolean updateMode;
 
@@ -34,7 +34,7 @@ public class NoteDetailsActivity extends AppCompatActivity  implements View.OnCl
         setContentView(R.layout.activity_note_details);
         initviews();
         btnSubmit.setOnClickListener(this);
-        user = new User();
+        note = new Note();
         resolver = getContentResolver();
     }
 
@@ -42,24 +42,24 @@ public class NoteDetailsActivity extends AppCompatActivity  implements View.OnCl
     public void onClick(View view) {
         int id = view.getId();
         if(id == R.id.buttonSubmit)
-        user.setName(etxtName.getText().toString().trim());
-        user.setDescription(etxtDescription.getText().toString().trim());
+        note.setName(etxtName.getText().toString().trim());
+        note.setDescription(etxtDescription.getText().toString().trim());
         insertUser();
     }
     void insertUser() {
         ContentValues values = new ContentValues();
-        values.put(Util.COL_NAME, user.getName());
-        values.put(Util.COL_DESCRIPTION, user.getDescription());
+        values.put(Util.COL_NAME, note.getName());
+        values.put(Util.COL_DESCRIPTION, note.getDescription());
 
         if(!updateMode) {
             Uri uri = resolver.insert(Util.USER_URI, values);
-            Toast.makeText(this, user.getName() + " registered successfully with id " + uri.getLastPathSegment(), Toast.LENGTH_LONG).show();
+            Toast.makeText(this, note.getName() + " registered successfully with id " + uri.getLastPathSegment(), Toast.LENGTH_LONG).show();
             clearFields();
         }else{
-            String where = Util.COL_ID+" = "+rcvUser.getId();
+            String where = Util.COL_ID+" = "+ rcvNote.getId();
             int i = resolver.update(Util.USER_URI,values,where,null);
             if(i>0){
-                Toast.makeText(this,rcvUser.getName()+ " updated...",Toast.LENGTH_LONG).show();
+                Toast.makeText(this, rcvNote.getName()+ " updated...",Toast.LENGTH_LONG).show();
                 finish();
             }
         }
@@ -86,7 +86,7 @@ public class NoteDetailsActivity extends AppCompatActivity  implements View.OnCl
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         if(item.getItemId() == R.id.allUsers){
-            Intent intent = new Intent(NoteDetailsActivity.this,AllUserActivity.class);
+            Intent intent = new Intent(NoteDetailsActivity.this,AllNoteActivity.class);
             startActivity(intent);
         }
         return super.onOptionsItemSelected(item);
